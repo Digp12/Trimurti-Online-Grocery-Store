@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{base::layout(~{::section})}">
+<head>
+    <meta charset="UTF-8">
+    <title>Shopping Cart</title>
+</head>
+<body>
+<section>
+    <div class="container mt-5">
+        <div class="card shadow">
+            <div class="card-header bg-light text-center">
+                <h4 class="mb-0">Your Shopping Cart</h4>
+                <th:block th:if="${session.succMsg}">
+                    <p class="text-success fw-bold">[[${session.succMsg}]]</p>
+                    <th:block th:text="${@commnServiceImpl.removeSessionMessage()}"></th:block>
+                </th:block>
+                <th:block th:if="${session.errorMsg}">
+                    <p class="text-danger fw-bold">[[${session.errorMsg}]]</p>
+                    <th:block th:text="${@commnServiceImpl.removeSessionMessage()}"></th:block>
+                </th:block>
+            </div>
+            <div class="card-body">
+                <div th:if="${carts.isEmpty()}">
+                    <p class="text-center">Your cart is empty.</p>
+                    <div class="text-center">
+                        <a href="/" class="btn btn-primary">Continue Shopping</a>
+                    </div>
+                </div>
+                <div th:unless="${carts.isEmpty()}">
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Image</th>
+                                <th scope="col">Product</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Quantity</th>
+                                <th scope="col">Total</th>
+                                <th scope="col">Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="cart, c : ${carts}">
+                                <th scope="row">[[${c.count}]]</th>
+                                <td>
+                                    <img th:src="@{'/img/product_img/' + ${cart.product.image}}"
+                                         alt="Product Image" class="img-fluid" style="max-width: 70px;">
+                                </td>
+                                <td>[[${cart.product.title}]]</td>
+                                <td>&#8377; [[${#numbers.formatDecimal(cart.product.discountPrice, 0, 'COMMA', 2, 'POINT')}]]</td>
+                                <td>
+                                    <div class="d-flex align-items-center justify-content-center">
+                                        <a th:href="@{'/user/cartQuantityUpdate?sy=de&cid=' + ${cart.id}}" class="btn btn-sm btn-outline-secondary">-</a>
+                                        <span class="mx-2">[[${cart.quantity}]]</span>
+                                        <a th:href="@{'/user/cartQuantityUpdate?sy=in&cid=' + ${cart.id}}" class="btn btn-sm btn-outline-secondary">+</a>
+                                    </div>
+                                </td>
+                                <td>&#8377; [[${#numbers.formatDecimal(cart.totalPrice, 0, 'COMMA', 2, 'POINT')}]]</td>
+                                <td>
+                                    <a th:href="@{'/user/removeItemCart/'+${cart.id}}" class="btn btn-danger btn-sm">Remove</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="5" class="text-end fw-bold">Total:</td>
+                                <td colspan="2" class="fw-bold">&#8377; [[${#numbers.formatDecimal(totalOrderPrice, 0, 'COMMA', 2, 'POINT')}]]</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+					<div class="container-fluid d-flex justify-content-center " >
+						<div class="text-center mx-2">
+											    <a href="/" class="btn btn-primary">Continue Shopping</a>
+											</div>
+                    <div class="text-center mx-2">
+                        <a href="/user/orders" class="btn btn-warning">Proceed to Checkout</a>
+                    </div>
+					
+					</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    function validateCartUpdate(form) {
+        const quantity = form.querySelector('input[name="quantity"]').value;
+        if (!quantity || quantity < 1 || quantity > 10) {
+            alert('Please enter a valid quantity between 1 and 10');
+            return false;
+        }
+        return true;
+    }
+</script>
+</body>
+</html>

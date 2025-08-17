@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Place Your Order</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .order-section {
+            background-color: #f8f9fa;
+            padding: 40px 0;
+        }
+
+        .order-card {
+            border: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        .order-card-header {
+            background-color: #007bff;
+            color: white;
+            padding: 15px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+        }
+
+        .order-card-body {
+            padding: 20px;
+        }
+
+        .form-control {
+            border-radius: 5px;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+
+        .edit-button {
+            cursor: pointer;
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+            background-color: transparent;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .edit-button:hover {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .edit-button:active {
+            background-color: #0056b3;
+        }
+
+        .edit-button.disabled {
+            color: #ccc;
+            cursor: not-allowed;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .card-body table tr td {
+            padding: 8px 10px;
+        }
+
+        .payment-options input {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div th:replace="~{base::layout(~{::order-content})}">
+        <div th:fragment="order-content" class="container-fluid mt-3">
+            <section class="order-section">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-md-10">
+                            <form action="/user/save-order" method="post" id="orders" novalidate class="order-card">
+                                <div class="order-card-header text-center p-2">
+                                    <h4>Order Details</h4>
+                                </div>
+                                <div class="order-card-body">
+                                    <div class="row">
+                                        <div class="col-md-6" style="padding-right: 3%;">
+                                            <div class="mb-4">
+                                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                                    <h5 class="mb-0">Billing Address</h5>
+                                                    <span id="editBilling" class="edit-button">Edit</span>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6 mb-3">
+                                                        <label for="orderAddress.firstName">First Name</label>
+                                                        <input type="text" name="orderAddress.firstName" id="firstName" required class="form-control"
+                                                               th:value="${user.name}" readonly>
+                                                    </div>
+                                                    <div class="col-md-6 mb-3">
+                                                        <label for="orderAddress.lastName">Last Name</label>
+                                                        <input type="text" name="orderAddress.lastName" id="lastName" required class="form-control"
+                                                               th:value="${user.name}" readonly>
+                                                    </div>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="orderAddress.email">Email</label>
+                                                    <input type="email" name="orderAddress.email" id="email" required class="form-control"
+                                                           th:value="${user.email}" readonly>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="orderAddress.mobileNo">Mobile Number</label>
+                                                    <input type="text" name="orderAddress.mobileNo" id="mobileNo" required class="form-control"
+                                                           th:value="${user.mobileNumber}" readonly>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="orderAddress.address">Address</label>
+                                                    <input type="text" name="orderAddress.address" id="address" required class="form-control"
+                                                           th:value="${user.address}" readonly>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6 mb-3">
+                                                        <label for="orderAddress.city">City</label>
+                                                        <input type="text" name="orderAddress.city" id="city" required class="form-control"
+                                                               th:value="${user.city}" readonly>
+                                                    </div>
+                                                    <div class="col-md-6 mb-3">
+                                                        <label for="orderAddress.state">State</label>
+                                                        <input type="text" name="orderAddress.state" id="state" required class="form-control"
+                                                               th:value="${user.state}" readonly>
+                                                    </div>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="orderAddress.pincode">Pincode</label>
+                                                    <input type="number" name="orderAddress.pincode" id="pincode" required class="form-control"
+                                                           th:value="${user.pincode}" readonly>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mb-4">
+                                                <h5 class="mb-3">Payment Details</h5>
+                                                <div class="card mb-3">
+                                                    <div class="card-body">
+                                                        <table class="table table-borderless">
+                                                            <tbody>
+                                                            <tr>
+                                                                <td>Total Price</td>
+                                                                <td>:</td>
+                                                                <td>&#8377; [[${orderPrice}]]</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Delivery Fee</td>
+                                                                <td>:</td>
+                                                                <td>&#8377; 100</td>
+                                                            </tr>
+                                                            <tr class="border-top">
+                                                                <td>Total Order Price</td>
+                                                                <td>:</td>
+                                                                <td id="totalOrderAmount">&#8377; [[${totalOrderPrice}]]</td>
+                                                            </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+
+                                                <div class="payment-options mt-4 mb-3">
+                                                    <label><input type="radio" name="paymentType" value="COD" checked> Cash on Delivery</label>
+                                                    <label class="ms-3"><input type="radio" name="paymentType" value="ONLINE"> Online Pay</label>
+                                                </div>
+
+                                                <div class="mb-3">
+                                                    <input type="hidden" name="paymentStatus" id="paymentStatus">
+                                                    <button type="button" id="payNowBtn" class="btn btn-primary btn-block d-none">Pay Now</button>
+                                                    <button type="submit" id="placeOrderBtn" class="btn btn-primary btn-block">Place Order</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#editBilling").click(function() {
+                // Remove the readonly attribute from all billing address input fields
+                $("#firstName").removeAttr("readonly");
+                $("#lastName").removeAttr("readonly");
+                $("#email").removeAttr("readonly");
+                $("#mobileNo").removeAttr("readonly");
+                $("#address").removeAttr("readonly");
+                $("#city").removeAttr("readonly");
+                $("#state").removeAttr("readonly");
+                $("#pincode").removeAttr("readonly");
+
+                // Change the "Edit" text to "Save"
+                $(this).text("Save");
+                $(this).off("click").on("click", function() {
+                    // You would typically add logic here to save the edited data
+                    // For this example, we'll just make them readonly again
+                    $("#firstName").attr("readonly", true);
+                    $("#lastName").attr("readonly", true);
+                    $("#email").attr("readonly", true);
+                    $("#mobileNo").attr("readonly", true);
+                    $("#address").attr("readonly", true);
+                    $("#city").attr("readonly", true);
+                    $("#state").attr("readonly", true);
+                    $("#pincode").attr("readonly", true);
+                    $(this).text("Edit");
+                    $(this).off("click").on("click", arguments.callee); // Re-attach the original edit click handler
+                });
+            });
+        });
+    </script>
+</body>
+</html>

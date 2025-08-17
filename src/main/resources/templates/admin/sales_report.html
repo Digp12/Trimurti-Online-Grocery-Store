@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Sales Report</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+ 
+	<style>
+		.con {
+		     padding-left: 10%;
+		   }
+		
+		.chart-container {
+		    margin-top: 20px;
+		    margin-bottom: 20px;
+		    background: white;
+		    padding: 20px;
+		    border-radius: 10px;
+		    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+		}
+		
+		.top-products {
+		    margin-top: 30px;
+		    background: white;
+		    padding: 20px;
+		    border-radius: 10px;
+		    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+		}
+		
+		.stats-card {
+		    background: white;
+		    border-radius: 10px;
+		    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+		    transition: transform 0.3s;
+		}
+		
+		.stats-card:hover {
+		    transform: translateY(-5px);
+		}
+		
+		.stats-card .card-body {
+		    padding: 20px;
+		}
+		
+		.stats-card .card-title {
+		    color: #6c757d;
+		    font-size: 1rem;
+		    margin-bottom: 10px;
+		}
+		
+		.stats-card .card-text {
+		    color: #212529;
+		    font-size: 1.5rem;
+		    font-weight: bold;
+		}
+		
+		.table {
+		    margin-top: 20px;
+		}
+		
+		.table th {
+		    background-color: #f8f9fa;
+		    border-top: none;
+		}
+		
+		.table td {
+		    vertical-align: middle;
+		}
+		
+		.report-header {
+		    background: white;
+		    padding: 20px;
+		    border-radius: 10px;
+		    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+		    margin-bottom: 20px;
+		}
+		
+		.form-control, .form-select {
+		    border-radius: 5px;
+		    border: 1px solid #ced4da;
+		}
+		
+		.btn-primary {
+		    border-radius: 5px;
+		    padding: 8px 20px;
+		}
+	</style>
+	
+</head>
+<body>
+
+	<div th:replace="~{header::layout(~{::section})}"></div>
+
+	<section class="con">
+	<div class="container mt-5 pt-5">
+	    <div class="report-header">
+	        <h2 class="mb-4">Sales Report</h2>
+	        <form method="get" th:action="@{/admin/sales-report}" class="row">
+	            <div class="col-md-2">
+	                <label for="reportType" class="form-label">Report Type:</label>
+	                <select name="reportType" id="reportType" class="form-select" th:value="${reportType}">
+	                    <option value="DAILY">Daily</option>
+	                    <option value="MONTHLY">Monthly</option>
+	                    <option value="QUARTERLY">Quarterly</option>
+	                    <option value="YEARLY">Yearly</option>
+	                </select>
+	            </div>
+	            <div class="col-md-3">
+	                <label for="from" class="form-label">From:</label>
+	                <input type="date" name="from" id="from" class="form-control" th:value="${from}">
+	            </div>
+	            <div class="col-md-3">
+	                <label for="to" class="form-label">To:</label>
+	                <input type="date" name="to" id="to" class="form-control" th:value="${to}">
+	            </div>
+	            <div class="col-md-2 d-flex align-items-end">
+	                <button type="submit" class="btn btn-primary w-100">Generate Report</button>
+	            </div>
+	        </form>
+	    </div>
+
+	    <div class="row mb-4">
+	        <div class="col-md-3">
+	            <div class="stats-card">
+	                <div class="card-body">
+	                    <h5 class="card-title">Total Orders</h5>
+	                    <p class="card-text" th:text="${totalOrders}">0</p>
+	                </div>
+	            </div>
+	        </div>
+	        <div class="col-md-3">
+	            <div class="stats-card">
+	                <div class="card-body">
+	                    <h5 class="card-title">Total Revenue</h5>
+	                    <p class="card-text">&#8377; [[${#numbers.formatDecimal(totalRevenue, 0, 'COMMA', 2, 'POINT')}]]</p>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+
+	    <div class="chart-container">
+	        <h4 class="mb-4">Sales Trend</h4>
+	        <canvas id="salesChart" width="900" height="400"></canvas>
+	    </div>
+
+	    <div class="top-products">
+	        <h4 class="mb-4">Top Selling Products</h4>
+	        <div class="table-responsive">
+	            <table class="table table-hover">
+	                <thead class="table-light">
+	                    <tr>
+	                        <th>Product Name</th>
+	                        <th>Category</th>
+	                        <th>Quantity Sold</th>
+	                        <th>Revenue</th>
+	                    </tr>
+	                </thead>
+	                <tbody>
+	                    <tr th:each="product : ${topSellingProducts}">
+	                        <td th:text="${product.productName}">Product Name</td>
+	                        <td th:text="${product.category}">Category</td>
+	                        <td th:text="${#numbers.formatInteger(product.totalQuantity, 0, 'COMMA')}">0</td>
+	                        <td>&#8377; [[${#numbers.formatDecimal(product.totalRevenue, 0, 'COMMA', 2, 'POINT')}]]</td>
+	                    </tr>
+	                </tbody>
+	            </table>
+	        </div>
+	    </div>
+	</div>
+	</section>
+	
+
+<script th:inline="javascript">
+    let reportData = /*[[${reportData}]]*/ [];
+    let reportType = /*[[${reportType}]]*/ 'DAILY';
+</script>
+
+<script>
+    const labels = reportData.map(item => {
+        switch(reportType) {
+            case 'DAILY':
+                return new Date(item.date).toLocaleDateString('en-US', { 
+                    month: 'short', 
+                    day: 'numeric' 
+                });
+            case 'MONTHLY':
+                return new Date(item.date).toLocaleDateString('en-US', { 
+                    month: 'short', 
+                    year: 'numeric' 
+                });
+            case 'QUARTERLY':
+                const quarter = Math.floor((new Date(item.date).getMonth() / 3)) + 1;
+                return `Q${quarter} ${new Date(item.date).getFullYear()}`;
+            case 'YEARLY':
+                return new Date(item.date).getFullYear();
+            default:
+                return new Date(item.date).toLocaleDateString();
+        }
+    });
+    
+    const orderCounts = reportData.map(item => item.totalOrders);
+    const revenues = reportData.map(item => item.totalRevenue);
+
+    const ctx = document.getElementById('salesChart').getContext('2d');
+    const salesChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [
+                {
+                    label: 'Total Orders',
+                    data: orderCounts,
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    yAxisID: 'yOrders',
+                    tension: 0.3,
+                    fill: true
+                },
+                {
+                    label: 'Revenue (₹)',
+                    data: revenues,
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    yAxisID: 'yRevenue',
+                    tension: 0.3,
+                    fill: true
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                },
+                tooltip: {
+                    mode: 'index',
+                    intersect: false,
+                }
+            },
+            scales: {
+                yOrders: {
+                    type: 'linear',
+                    position: 'left',
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Orders'
+                    },
+                    grid: {
+                        drawOnChartArea: true,
+                    }
+                },
+                yRevenue: {
+                    type: 'linear',
+                    position: 'right',
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Revenue (₹)'
+                    },
+                    grid: {
+                        drawOnChartArea: false,
+                    },
+                    ticks: {
+                        callback: function(value) {
+                            return '₹' + value.toLocaleString('en-IN', {
+                                maximumFractionDigits: 2
+                            });
+                        }
+                    }
+                }
+            }
+        }
+    });
+</script>
+
+
+
+</body>
+</html>

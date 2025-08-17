@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Edit Product</title>
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .card-sh {
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-header {
+            background-color: #007bff;
+            color: white;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+
+        .form-label {
+            font-weight: 500;
+            color: #343a40;
+			font-weight: bold;
+        }
+
+        .form-control {
+            border-radius: 5px;
+            border: 1px solid #ced4da;
+        }
+
+        .form-control:focus {
+            border-color: #80bdff;
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+        .btn-primary:hover {
+            background-color: #0069d9;
+            border-color: #0062cc;
+        }
+		
+		.con{
+			padding-top: 2%;
+		}
+		
+    </style>
+</head>
+<body>
+    <div>
+        <div th:replace="~{header::layout(~{::section})}"></div>
+    </div>
+    <section class="con">
+        <div class="container p-5 mt-3">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="card card-sh">
+                        <div class="card-header text-center">
+                            <p class="fs-4 mb-0">Edit Product</p>
+                            <th:block th:if="${session.succMsg}">
+                                <p class="text-success fw-bold mt-2 mb-0">[[${session.succMsg}]]</p>
+                                <th:block th:text="${@commnServiceImpl.removeSessionMessage()}"></th:block>
+                            </th:block>
+                            <th:block th:if="${session.errorMsg}">
+                                <p class="text-danger fw-bold mt-2 mb-0">[[${session.errorMsg}]]</p>
+                                <th:block th:text="${@commnServiceImpl.removeSessionMessage()}"></th:block>
+                            </th:block>
+                        </div>
+                        <div class="card-body p-4">
+                            <form action="/admin/updateProduct" method="post" enctype="multipart/form-data">
+                                <input type="hidden" name="id" th:value="${product.id}">
+                                <div class="mb-3">
+                                    <label class="form-label">Enter Title</label>
+                                    <input type="text" name="title" th:value="${product.title}" class="form-control" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Enter Description</label>
+                                    <textarea rows="3" class="form-control" name="description" required>[[${product.description}]]</textarea>
+                                </div>
+                                <div class="row">
+                                    <div class="mb-3 col">
+                                        <label class="form-label">Category</label>
+                                        <select class="form-control" name="category" required>
+                                            <option th:value="${product.category}">[[${product.category}]]</option>
+                                            <option th:each="c:${categories}" th:value="${c.name}">[[${c.name}]]</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3 col">
+                                        <label class="form-label">Enter Price</label>
+                                        <input type="number" name="price" th:value="${product.price}" class="form-control" required>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="mb-3 col">
+                                        <label class="form-label">Discount</label>
+                                        <input type="number" name="discount" th:value="${product.discount}" class="form-control" required>
+                                    </div>
+                                    <div class="mb-3 col">
+                                        <label class="form-label">Discount Price</label>
+                                        <input type="number" readonly th:value="${product.discountPrice}" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Status</label>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" th:checked="${product.isActive==true}" value="true" name="isActive" id="activeRadio">
+                                        <label class="form-check-label" for="activeRadio">Active</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="isActive" th:checked="${product.isActive==false}" value="false" id="inactiveRadio">
+                                        <label class="form-check-label" for="inactiveRadio">Inactive</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="mb-3 col">
+                                        <label class="form-label">Enter Stock</label>
+                                        <input type="text" name="stock" th:value="${product.stock}" class="form-control" required>
+                                    </div>
+                                    <div class="mb-3 col">
+                                        <label class="form-label">Upload Image</label>
+                                        <input type="file" name="file" class="form-control">
+                                    </div>
+                                    <div class="mt-1">
+                                        <img th:src="@{'/img/product_img/'+${product.image}}" width="100px" height="100px" alt="Product Image">
+                                    </div>
+                                </div>
+                                <button class="btn btn-primary col-12">Update</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

@@ -1,0 +1,156 @@
+@charset "ISO-8859-1";
+
+.card-sh {
+	box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.3);
+}
+
+.cat-div {
+	box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+}
+
+.error {
+	color: red;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-prev-icon,
+ .carousel-control-next-icon {
+     background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+     border-radius: 50%; /* Make them circular */
+     padding: 10px; /
+ }
+
+/* Refund Form Styles */
+.refund-form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.refund-form .form-group {
+    margin-bottom: 20px;
+}
+
+.refund-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.refund-form input,
+.refund-form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.refund-form textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* Refund List Styles */
+.refund-list {
+    margin-top: 20px;
+}
+
+.refund-item {
+    background: #fff;
+    padding: 20px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.refund-item h4 {
+    margin: 0 0 10px 0;
+    color: #333;
+}
+
+.refund-item p {
+    margin: 5px 0;
+    color: #666;
+}
+
+.refund-actions {
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+}
+
+.refund-actions button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.btn-success {
+    background-color: #28a745;
+    color: white;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    color: white;
+}
+
+/* Refund Info Styles */
+.refund-info {
+    margin-top: 30px;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+
+.refund-info h3 {
+    margin-top: 0;
+    color: #333;
+}
+
+.refund-info ul {
+    padding-left: 20px;
+}
+
+.refund-info li {
+    margin-bottom: 10px;
+    color: #666;
+}
+
+/* Admin Refund Management Styles */
+.refund-filters {
+    margin: 20px 0;
+    display: flex;
+    gap: 10px;
+}
+
+.admin-nav {
+    margin-bottom: 20px;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .refund-form {
+        padding: 15px;
+    }
+    
+    .refund-item {
+        padding: 15px;
+    }
+    
+    .refund-actions {
+        flex-direction: column;
+    }
+    
+    .refund-actions button {
+        width: 100%;
+    }
+}
+
+ 

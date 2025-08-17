@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:fragment="layout(content)">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trimurti Kirana Stores</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/base_css.css">
+	<style>
+		/* /css/footer.css */
+
+		.footer {
+		    color: rgb(255, 255, 255); /* Dark grey text */
+		    padding: 30px 0;
+		    border-top: 1px solid #dee2e6; /* Light border at the top */
+		}
+
+		.footer .container {
+		    max-width: 1200px;
+		    margin: 0 auto;
+		    padding: 0 15px;
+		}
+
+		.footer-heading {
+		    font-size: 1.2rem;
+		    font-weight: bold;
+		    margin-bottom: 15px;
+		    color: rgb(255, 255, 255); /* Darker heading text */
+		}
+
+		.footer-links, .footer-contact, .footer-social {
+		    list-style: none;
+		    padding: 0;
+		    margin: 0;
+		}
+
+		.footer-links li, .footer-contact li, .footer-social li {
+		    margin-bottom: 8px;
+		}
+
+		.footer-links a, .footer-contact a {
+		    color: rgb(255, 255, 255);
+		    text-decoration: none;
+		    transition: color 0.3s ease;
+		}
+
+		
+
+
+		.footer-social a {
+		    display: inline-block;
+		    margin-right: 10px;
+		    font-size: 1.2rem;
+		    color: rgb(255, 255, 255);
+		    text-decoration: none;
+		    transition: color 0.3s ease;
+		}
+
+		.footer-social a:hover {
+		    color: #007bff;
+		}
+
+		.footer-bottom {
+		    text-align: center;
+		    padding-top: 20px;
+		    margin-top: 20px;
+		    border-top: 1px solid #dee2e6;
+		    font-size: 0.9rem;
+		    color: rgb(255, 255, 255); 
+		}
+
+		/* Responsive adjustments (optional) */
+		@media (max-width: 768px) {
+		    .footer-section {
+		        margin-bottom: 20px;
+		        text-align: center;
+		    }
+		    .footer-bottom {
+		        text-align: center;
+		    }
+		}
+		
+	</style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="container-fluid d-flex justify-content-between align-items-center">
+            <a class="logo d-flex align-items-center text-decoration-none" href="/">
+                <img src="/img/logo.jpg" alt="TrimurtiKiranaStores Logo" class="logo-img">
+                <div class="logo-text-container">
+                    <span class="logo-text d-block fw-bold fs-5">Trimurti</span>
+                    <span class="d-block kirana-stores fs-6">Kirana Stores</span>
+                </div>
+            </a>
+            <div class="search-bar">
+                <form action="/products" method="get" class="d-flex">
+                    <input type="text" name="ch" placeholder="Search products..." class="form-control me-2">
+                    <button class="btn btn-success">Search</button>
+                </form>
+            </div>
+
+            <div class="user-actions">
+                <th:block th:if="${user == null}">
+                    <a href="/signin"><i class="fa-solid fa-right-to-bracket"></i> Login</a>
+                    <a href="/register">Register</a>
+                </th:block>
+                <th:block th:if="${user != null}">
+                    <a href="/user/cart"><i class="fa-solid fa-cart-shopping"></i> Cart [[${countCart}]]</a>
+                    <a href="/user/profile"><i class="fa-solid fa-user"></i> Profile</a>
+                    <a href="/logout"><i class="fa-solid fa-sign-out"></i> Logout</a>
+                    <a href="/user/user-orders"><i class="fa-solid fa-box"></i> Orders</a>
+                </th:block>
+            </div>
+
+        </div>
+    </header>
+
+    <nav class="category-nav">
+        <div class="container-fluid d-flex justify-content-center">
+            <div class="category-item" style="margin-top: 4px;">
+                <a href="/products">All Products</a>
+            </div>
+            <th:block th:each="c:${categorys}">
+                <div class="category-item">
+                    <a th:href="@{/products/category(category=${c.name})}"
+                       th:classappend="${paramValue == c.name} ? 'active' : ''"
+                       class="list-group-item list-group-item-action">
+                        [[${c.name}]]
+                    </a>
+                </div>
+            </th:block>
+        </div>
+    </nav>
+
+    <div th:replace="${content}"></div>
+	<div class="main-content"></div>
+
+	<footer class="footer">
+		  <div class="container">
+		    <div class="row">
+		      <div class="col-md-4 footer-section">
+		        <h6 class="footer-heading">Quick Links</h6>
+		        <ul class="footer-links">
+		          <li><a th:href="@{/about-us}">About Us</a></li>
+				  
+		        </ul>
+		      </div>
+		      <div class="col-md-4 footer-section">
+		        <h6 class="footer-heading">Help & Support</h6>
+		        <ul class="footer-contact">
+		          <li><i class="fa-brands fa-whatsapp"></i> <a href="https://wa.me/918830372491" target="_blank">WhatsApp: 8830372491</a></li>
+		          <li><i class="fa fa-phone"></i> <a href="tel:7588880156">Call: 7588880156</a></li>
+				  <li>
+					<a href="https://mail.google.com/mail/?view=cm&fs=1&to=storetrimurtikirana@gmail.com" target="_blank" class="text-decoration-none">
+					    <i class="fa fa-envelope me-1" aria-hidden="true"></i>
+					    storetrimurtikirana@gmail.com
+					</a>
+				  </li>
+				  
+		          <li><small>8:00 AM to 8:00 PM, 365 days</small></li>
+		         
+		        </ul>
+		      </div>
+		      <div class="col-md-4 footer-section">
+		        <h6 class="footer-heading">Connect With Us</h6>
+		        <ul class="footer-social">
+		          <li><a href="#" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a></li>
+		          <li><a href="#" target="_blank"><i class="fab fa-twitter"></i> Twitter</a></li>
+		          <li><a href="#" target="_blank"><i class="fab fa-instagram"></i> Instagram</a></li>
+		        </ul>
+		        <p class="mt-3">Feedback is always welcome!</p>
+		      </div>
+		    </div>
+		    <div class="footer-bottom">
+		      <p>&copy; 2025 Trimurti Kirana and General Stores. All rights reserved.</p>
+		    </div>
+		  </div>
+		</footer>
+
+		<!-- Contact Modal -->
+		<div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="contactModalLabel">Contact Us</h5>
+		        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		      </div>
+		      <div class="modal-body">
+		        <p>You can reach us at:</p>
+		        <p><i class="fa fa-envelope me-2"></i> storetrimurtikirana@gmail.com</p>
+		        <p><i class="fa fa-phone me-2"></i> 7588880156</p>
+		        <p><i class="fab fa-whatsapp me-2"></i> 8830372491</p>
+		        <p class="mt-3">Timings: 8:00 AM to 8:00 PM, 365 days</p>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+		        <a href="mailto:storetrimurtikirana@gmail.com" class="btn btn-primary">Send Email</a>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/script.js"></script>
+	<script src="/js/checkout.js"></script>
+	<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+	<script>
+		function copyEmail() {
+			const email = 'storetrimurtikirana@gmail.com';
+			navigator.clipboard.writeText(email).then(() => {
+				alert('Email address copied to clipboard!');
+			}).catch(err => {
+				console.error('Failed to copy email: ', err);
+			});
+		}
+	</script>
+</body>
+
+</html>

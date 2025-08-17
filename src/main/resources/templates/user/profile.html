@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{base::layout(~{::section})}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .profile-section {
+            background-color: #f8f9fa;
+            padding: 40px 0;
+        }
+
+        .profile-card {
+            border: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            background-color: white;
+        }
+
+        .profile-card-header {
+            background-color: #007bff;
+            color: white;
+            padding: 15px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+        }
+
+        .profile-card-body {
+            padding: 20px;
+        }
+
+        .profile-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 2px solid #007bff;
+            object-fit: cover;
+        }
+
+        .form-control {
+            border-radius: 5px;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+<section class="profile-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-10">
+                <div class="profile-card">
+                    <div class="profile-card-header text-center">
+                        <h4>My Profile</h4>
+                    </div>
+                    <div class="profile-card-body">
+                        <th:block th:if="${session.succMsg}">
+                            <p class="text-success fw-bold text-center">[[${session.succMsg}]]</p>
+                            <th:block th:text="${@commnServiceImpl.removeSessionMessage()}"></th:block>
+                        </th:block>
+                        <th:block th:if="${session.errorMsg}">
+                            <p class="text-danger fw-bold text-center">[[${session.errorMsg}]]</p>
+                            <th:block th:text="${@commnServiceImpl.removeSessionMessage()}"></th:block>
+                        </th:block>
+
+                        <div class="text-center mb-4">
+                            <img alt="Profile Image" th:src="@{'../img/profile_img/'+${user.profileImage}}"
+                                 class="profile-image">
+                        </div>
+
+                        <form action="/user/update-profile" method="post" enctype="multipart/form-data">
+                            <table class="table table-borderless">
+                                <tbody>
+                                <tr>
+                                    <th>Name</th>
+                                    <td><input type="text" name="name" class="form-control" th:value="${user.name}"></td>
+                                </tr>
+                                <tr>
+                                    <th>Mobile Number</th>
+                                    <td><input type="text" name="mobileNumber" class="form-control"
+                                               th:value="${user.mobileNumber}"></td>
+                                </tr>
+                                <tr>
+                                    <th>Email</th>
+                                    <td><input type="text" readonly class="form-control" th:value="${user.email}"></td>
+                                </tr>
+                                <tr>
+                                    <th>Address</th>
+                                    <td><input type="text" name="address" class="form-control"
+                                               th:value="${user.address}"></td>
+                                </tr>
+                                <tr>
+                                    <th>City</th>
+                                    <td><input type="text" name="city" class="form-control" th:value="${user.city}"></td>
+                                </tr>
+                                <tr>
+                                    <th>State</th>
+                                    <td><input type="text" name="state" class="form-control" th:value="${user.state}"></td>
+                                </tr>
+                                <tr>
+                                    <th>Pincode</th>
+                                    <td><input type="text" name="pincode" class="form-control"
+                                               th:value="${user.pincode}"></td>
+                                </tr>
+                                <tr>
+                                    <th>Image</th>
+                                    <td><input type="file" name="img" class="form-control"></td>
+                                </tr>
+								<tr>
+								    <th>Account Status</th>
+								    <td>
+								        <input type="text" readonly class="form-control" th:value="${user.isEnable ? 'Active' : 'Inactive'}">
+								        <input type="hidden" th:value="${user.id}" name="id">
+								    </td>
+								</tr>
+                                <tr>
+                                    <td colspan="2" class="text-center">
+                                        <button class="btn btn-primary">Update Profile</button>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="profile-card mt-4">
+                    <div class="profile-card-header text-center">
+                        <h4>Change Password</h4>
+                    </div>
+                    <div class="profile-card-body">
+                        <form action="/user/change-password" method="post">
+                            <table class="table table-borderless">
+                                <tbody>
+                                <tr>
+                                    <th>Current Password</th>
+                                    <td><input type="password" name="currentPassword" class="form-control"></td>
+                                </tr>
+                                <tr>
+                                    <th>New Password</th>
+                                    <td><input type="password" name="newPassword" class="form-control"></td>
+                                </tr>
+                                <tr>
+                                    <th>Confirm Password</th>
+                                    <td><input type="password" name="confirmPassword" class="form-control"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" class="text-center">
+                                        <button class="btn btn-primary">Update Password</button>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

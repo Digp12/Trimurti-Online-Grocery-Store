@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>All Products</title>
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        .table-light {
+            background-color: #f8f9fa;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+        .btn-primary:hover {
+            background-color: #0069d9;
+            border-color: #0062cc;
+        }
+
+        .btn-danger {
+            background-color: #dc3545;
+            border-color: #dc3545;
+        }
+
+        .btn-danger:hover {
+            background-color: #c82333;
+            border-color: #bd2130;
+        }
+
+        .table img {
+            max-width: 70px;
+            max-height: 70px;
+        }
+		.con{
+			padding-left: 15%;
+			padding-top: 3%;
+		}
+		
+		.action1{
+					text-align: center;
+				}
+
+    </style>
+</head>
+<body>
+    <div>
+        <div th:replace="~{header::layout(~{::section})}"></div>
+    </div>
+    <section class="con">
+        <div class="container-fluid mt-4 p-3">
+            <div class="row">
+                <p class="text-center fs-3 mt-2">All Products</p>
+                <hr>
+                <a href="/admin/" class="text-decoration-none"><i class="fa-solid fa-arrow-left"></i> Back</a>
+                <th:block th:if="${session.succMsg}">
+                    <p class="text-success fw-bold text-center mt-2">[[${session.succMsg}]]</p>
+                    <th:block th:text="${@commnServiceImpl.removeSessionMessage()}"></th:block>
+                </th:block>
+                <th:block th:if="${session.errorMsg}">
+                    <p class="text-danger fw-bold text-center mt-2">[[${session.errorMsg}]]</p>
+                    <th:block th:text="${@commnServiceImpl.removeSessionMessage()}"></th:block>
+                </th:block>
+                <div class="col-md-4 p-3">
+                    <form action="/admin/products" method="get">
+                        <div class="row">
+                            <div class="col">
+                                <input type="text" class="form-control" name="ch" placeholder="Search products">
+                            </div>
+                            <div class="col">
+                                <button class="btn btn-primary col">Search</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-12 p-3">
+                    <table class="table table-bordered">
+                        <thead class="table-light">
+                            <tr>
+                                <th scope="col">Sl No</th>
+                                <th scope="col">Image</th>
+                                <th scope="col">Title</th>
+                                <th scope="col">Category</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Discount</th>
+                                <th scope="col">Discount Price</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Stock</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="p, c : ${products}">
+                                <th scope="row">[[${c.count}]]</th>
+                                <td><img th:src="@{'/img/product_img/'+${p.image}}" alt="Product Image"></td>
+                                <td>[[${p.title}]]</td>
+                                <td>[[${p.category}]]</td>
+                                <td>[[${p.price}]]</td>
+                                <td>[[${p.discount}]]</td>
+                                <td>[[${p.discountPrice}]]</td>
+                                <td>[[${p.isActive} ? 'Active' : 'Inactive']]</td>
+                                <td>[[${p.stock}]]</td>
+                                <td>
+									<div class="action1" >
+                                    	<a th:href="@{'/admin/editProduct/'+${p.id}}" class="btn btn-sm btn-primary"><i class="fa-solid fa-pen-to-square"></i> Edit</a>
+                                    	<a th:href="@{'/admin/deleteProduct/'+${p.id}}" class="btn btn-sm btn-danger"><i class="fa-solid fa-trash"></i> Delete</a>
+                             		</div>
+							  </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="row mt-3 justify-content-center align-items-center">
+                        <div class="col-md-auto">Total Products: [[${totalElements}]]</div>
+                        <div class="col-md-auto">
+                            <nav aria-label="Page navigation">
+                                <ul class="pagination">
+                                    <li class="page-item" th:classappend="${isFirst} ? 'disabled':''">
+                                        <a class="page-link" th:href="@{'/admin/products?pageNo='+${pageNo-1}}" aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+                                    <li th:each="i : ${#numbers.sequence(1, totalPages)}" class="page-item" th:classappend="${pageNo+1==i}?'active':''">
+                                        <a class="page-link" th:href="@{'/admin/products?pageNo='+${i-1}}">[[${i}]]</a>
+                                    </li>
+                                    <li class="page-item" th:classappend="${isLast} ? 'disabled':''">
+                                        <a class="page-link" th:href="@{'/admin/products?pageNo='+${pageNo+1}}" aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Category List</title>
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .card-sh {
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-header {
+            background-color: #007bff;
+            color: white;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+
+        .table thead th {
+            background-color: #e9ecef;
+            border-bottom: 2px solid #dee2e6;
+        }
+
+        .table td, .table th {
+            vertical-align: middle;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+        .btn-primary:hover {
+            background-color: #0069d9;
+            border-color: #0062cc;
+        }
+
+        .btn-danger {
+            background-color: #dc3545;
+            border-color: #dc3545;
+        }
+
+        .btn-danger:hover {
+            background-color: #c82333;
+            border-color: #bd2130;
+        }
+		.con{
+			padding-left: 5%;
+		}
+    </style>
+</head>
+<body>
+    <div th:replace="~{header::layout(~{::section})}"></div>
+    <section class="con">
+        <div class="container p-5 mt-5">
+            <div class="card card-sh">
+                <div class="card-header text-center fs-4">Category Details</div>
+                <div class="card-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Sl No</th>
+                                <th>Category</th>
+                                <th>Status</th>
+                                <th>Image</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="cat, c : ${categorys}">
+                                <th>[[${c.count}]]</th>
+                                <td>[[${cat.name}]]</td>
+                                <td>[[${cat.isActive} ? 'Active' : 'Inactive']]</td>
+                                <td><img th:src="@{'/img/category_img/'+${cat.imageName}}" width="50" height="50" alt="Category Image"></td>
+                                <td>
+                                    <a th:href="@{'/admin/loadEditCategory/'+${cat.id}}" class="btn btn-primary btn-sm">Edit</a>
+                                    <form action="/admin/deleteCategory" method="get" onsubmit="return validateCategoryDelete(this)">
+                                        <input type="hidden" name="id" th:value="${cat.id}">
+                                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="row mt-3 justify-content-between align-items-center">
+                        <div class="col-md-auto">Total Categories: [[${totalElements}]]</div>
+                        <div class="col-md-auto">
+                            <nav aria-label="Page navigation">
+                                <ul class="pagination">
+                                    <li class="page-item" th:classappend="${isFirst} ? 'disabled' : ''">
+                                        <a class="page-link" th:href="@{'/admin/category?pageNo='+${pageNo-1}}" aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+
+                                    <li th:each="i : ${#numbers.sequence(1, totalPages)}" class="page-item" th:classappend="${pageNo+1==i}?'active':''">
+                                        <a class="page-link" th:href="@{'/admin/category?pageNo='+${i-1}}">[[${i}]]</a>
+                                    </li>
+
+                                    <li class="page-item" th:classappend="${isLast} ? 'disabled' : ''">
+                                        <a class="page-link" th:href="@{'/admin/category?pageNo='+${pageNo+1}}" aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function validateCategoryDelete(form) {
+            const categoryId = form.querySelector('input[name="id"]').value;
+            if (!categoryId) {
+                alert('Invalid category ID');
+                return false;
+            }
+            return confirm('Are you sure you want to delete this category?');
+        }
+    </script>
+</body>
+</html>

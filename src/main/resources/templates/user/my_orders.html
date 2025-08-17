@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>My Orders</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .badge-IN_PROGRESS {
+            background-color: #ffc107;
+            color: #212529;
+        }
+
+        .badge-ORDER_RECEIVED {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        .badge-PRODUCT_PACKED {
+            background-color: #17a2b8;
+            color: #fff;
+        }
+
+        .badge-OUT_FOR_DELIVERY {
+            background-color: #fd7e14;
+            color: #fff;
+        }
+
+        .badge-DELIVERED {
+            background-color: #28a745;
+            color: #fff;
+        }
+
+        .badge-CANCELLED {
+            background-color: #dc3545;
+            color: #fff;
+        }
+
+        .badge-SUCCESS {
+            background-color: #198754;
+            color: #fff;
+        }
+
+        .badge-PENDING {
+            background-color: #ffc107;
+            color: #212529;
+        }
+
+        .badge-APPROVED {
+            background-color: #28a745;
+            color: #fff;
+        }
+
+        .badge-REJECTED {
+            background-color: #dc3545;
+            color: #fff;
+        }
+
+        .badge-COMPLETED {
+            background-color: #17a2b8;
+            color: #fff;
+        }
+
+        .order-section {
+            margin-bottom: 2rem;
+        }
+
+        .section-header {
+            background-color: #f8f9fa;
+            padding: 1rem;
+            border-radius: 0.25rem;
+            margin-bottom: 1rem;
+            cursor: pointer;
+        }
+
+        .section-header:hover {
+            background-color: #e9ecef;
+        }
+
+        .section-header h3 {
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .section-header .badge {
+            font-size: 1rem;
+        }
+
+        .order-card {
+            margin-bottom: 1rem;
+        }
+
+        .category-buttons {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 1rem;
+            gap: 0.5rem;
+        }
+
+        .category-btn {
+            padding: 0.5rem 1rem;
+            border-radius: 0.25rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .category-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .category-btn.active {
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+
+<body>
+    <div th:replace="~{base::layout(~{::orders-content})}">
+        <div th:fragment="orders-content">
+            <section>
+                <div class="container mt-5">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h2>My Orders</h2>
+                        <div class="category-buttons">
+                            <button class="btn btn-warning category-btn" onclick="showSection('inProgressOrders')">
+                                In Progress <span class="badge badge-dark" th:text="${inProgressCount}">0</span>
+                            </button>
+                            <button class="btn btn-success category-btn" onclick="showSection('deliveredOrders')">
+                                Completed <span class="badge badge-dark" th:text="${deliveredCount}">0</span>
+                            </button>
+                            <button class="btn btn-danger category-btn" onclick="showSection('cancelledOrders')">
+                                Cancelled <span class="badge badge-dark" th:text="${cancelledCount}">0</span>
+                            </button>
+                            <button class="btn btn-info category-btn" onclick="showSection('refundOrders')">
+                                Refund <span class="badge badge-dark" th:text="${refundCount}">0</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div th:if="${#lists.isEmpty(orders)}">
+                        <p class="alert alert-warning">No orders found.</p>
+                    </div>
+
+                    <!-- In Progress Orders -->
+                    <div class="order-section">
+                        <div class="section-header" data-toggle="collapse" data-target="#inProgressOrders">
+                            <h3>
+                                In Progress Orders
+                                <span class="badge badge-warning" th:text="${inProgressCount}">0</span>
+                            </h3>
+                        </div>
+                        <div id="inProgressOrders" class="collapse show">
+                            <div th:each="order : ${orders}" th:if="${order.status == 'In Progress'}">
+                                <div class="card shadow-sm order-card">
+                                    <div class="card-header bg-info text-dark d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <strong>Order ID:</strong> <span th:text="${order.orderId}"></span> |
+                                            <strong>Date:</strong> <span th:text="${order.orderDate}"></span>
+                                        </div>
+                                        <div>
+                                            <strong>Status:</strong>
+                                            <span class="badge badge-IN_PROGRESS" th:text="${order.status}"></span>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <h5 class="card-title">Order Details</h5>
+                                        <table class="table table-bordered table-hover">
+                                            <thead class="thead-light">
+                                                <tr>
+                                                    <th>Product</th>
+                                                    <th>Qty</th>
+                                                    <th>Price</th>
+                                                    <th>Subtotal</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr th:each="po : ${order.productOrders}">
+                                                    <td th:text="${po.product.title}">Product Name</td>
+                                                    <td th:text="${po.quantity}">1</td>
+                                                    <td>₹<span th:text="${po.price}">0</span></td>
+                                                    <td>₹<span th:text="${po.price * po.quantity}">0</span></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="card-footer bg-light d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <a th:href="@{/user/update-status(id=${order.id}, st=6)}"
+                                               class="btn btn-danger btn-sm"
+                                               onclick="return validateOrderCancel(this)">
+                                                Cancel Order
+                                            </a>
+                                        </div>
+                                        <div>
+                                            <h5 class="mb-0">Total: ₹<span th:text="${order.totalAmount}">0</span></h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Delivered Orders -->
+                    <div class="order-section">
+                        <div class="section-header" data-toggle="collapse" data-target="#deliveredOrders">
+                            <h3>
+                                Delivered Orders
+                                <span class="badge badge-success" th:text="${deliveredCount}">0</span>
+                            </h3>
+                        </div>
+                        <div id="deliveredOrders" class="collapse show">
+                            <div th:each="order : ${orders}" th:if="${order.status == 'Delivered'}">
+                                <div class="card shadow-sm order-card">
+                                    <div class="card-header bg-info text-dark d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <strong>Order ID:</strong> <span th:text="${order.orderId}"></span> |
+                                            <strong>Date:</strong> <span th:text="${order.orderDate}"></span>
+                                        </div>
+                                        <div>
+                                            <strong>Status:</strong>
+                                            <span class="badge badge-DELIVERED" th:text="${order.status}"></span>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <h5 class="card-title">Order Details</h5>
+                                        <table class="table table-bordered table-hover">
+                                            <thead class="thead-light">
+                                                <tr>
+                                                    <th>Product</th>
+                                                    <th>Qty</th>
+                                                    <th>Price</th>
+                                                    <th>Subtotal</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr th:each="po : ${order.productOrders}">
+                                                    <td th:text="${po.product.title}">Product Name</td>
+                                                    <td th:text="${po.quantity}">1</td>
+                                                    <td>₹<span th:text="${po.price}">0</span></td>
+                                                    <td>₹<span th:text="${po.price * po.quantity}">0</span></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="card-footer bg-light d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <h5 class="mb-0">Total: ₹<span th:text="${order.totalAmount}">0</span></h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cancelled Orders -->
+                    <div class="order-section">
+                        <div class="section-header" data-toggle="collapse" data-target="#cancelledOrders">
+                            <h3>
+                                Cancelled Orders
+                                <span class="badge badge-danger" th:text="${cancelledCount}">0</span>
+                            </h3>
+                        </div>
+                        <div id="cancelledOrders" class="collapse show">
+                            <div th:each="order : ${orders}" th:if="${order.status == 'Cancelled'}">
+                                <div class="card shadow-sm order-card">
+                                    <div class="card-header bg-info text-dark d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <strong>Order ID:</strong> <span th:text="${order.orderId}"></span> |
+                                            <strong>Date:</strong> <span th:text="${order.orderDate}"></span>
+                                        </div>
+                                        <div>
+                                            <strong>Status:</strong>
+                                            <span class="badge badge-CANCELLED" th:text="${order.status}"></span>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <h5 class="card-title">Order Details</h5>
+                                        <table class="table table-bordered table-hover">
+                                            <thead class="thead-light">
+                                                <tr>
+                                                    <th>Product</th>
+                                                    <th>Qty</th>
+                                                    <th>Price</th>
+                                                    <th>Subtotal</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr th:each="po : ${order.productOrders}">
+                                                    <td th:text="${po.product.title}">Product Name</td>
+                                                    <td th:text="${po.quantity}">1</td>
+                                                    <td>₹<span th:text="${po.price}">0</span></td>
+                                                    <td>₹<span th:text="${po.price * po.quantity}">0</span></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="card-footer bg-light d-flex justify-content-between align-items-center">
+                                        <div th:if="${order.paymentType == 'ONLINE'}">
+                                            <span th:if="${orderRefundStatus[order.id] != null}"
+                                                  class="badge" 
+                                                  th:classappend="${orderRefundStatus[order.id] == 'PENDING' ? 'badge-warning' : 
+                                                                  orderRefundStatus[order.id] == 'APPROVED' ? 'badge-success' : 
+                                                                  orderRefundStatus[order.id] == 'REJECTED' ? 'badge-danger' : 
+                                                                  orderRefundStatus[order.id] == 'COMPLETED' ? 'badge-info' : 'badge-secondary'}"
+                                                  th:text="${orderRefundStatus[order.id]}">
+                                                Refund Status
+                                            </span>
+                                        </div>
+                                        <div>
+                                            <h5 class="mb-0">Total: ₹<span th:text="${order.totalAmount}">0</span></h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Refund Orders -->
+                    <div class="order-section">
+                        <div class="section-header" data-toggle="collapse" data-target="#refundOrders">
+                            <h3>
+                                Refund Orders
+                                <span class="badge badge-info" th:text="${refundCount}">0</span>
+                            </h3>
+                        </div>
+                        <div id="refundOrders" class="collapse">
+                            <div th:each="order : ${orders}" th:if="${orderRefundStatus[order.id] != null}">
+                                <div class="card shadow-sm order-card">
+                                    <div class="card-header bg-info text-dark d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <strong>Order ID:</strong> <span th:text="${order.orderId}"></span> |
+                                            <strong>Date:</strong> <span th:text="${order.orderDate}"></span>
+                                        </div>
+                                        <div>
+                                            <strong>Refund Status:</strong>
+                                            <span class="badge" th:classappend="'badge-' + ${orderRefundStatus[order.id]}" 
+                                                  th:text="${orderRefundStatus[order.id]}">Status</span>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <h5 class="card-title">Order Details</h5>
+                                        <table class="table table-bordered table-hover">
+                                            <thead class="thead-light">
+                                                <tr>
+                                                    <th>Product</th>
+                                                    <th>Qty</th>
+                                                    <th>Price</th>
+                                                    <th>Subtotal</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr th:each="po : ${order.productOrders}">
+                                                    <td th:text="${po.product.title}">Product Name</td>
+                                                    <td th:text="${po.quantity}">1</td>
+                                                    <td>₹<span th:text="${po.price}">0</span></td>
+                                                    <td>₹<span th:text="${po.price * po.quantity}">0</span></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="card-footer bg-light d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <h5 class="mb-0">Total: ₹<span th:text="${order.totalAmount}">0</span></h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Add click handler for section headers
+            $('.section-header').click(function() {
+                $(this).next('.collapse').collapse('toggle');
+            });
+
+            // Initialize first button as active
+            $('.category-btn').first().addClass('active');
+        });
+
+        function showSection(sectionId) {
+            // Hide all sections
+            $('.collapse').collapse('hide');
+            
+            // Show selected section
+            $('#' + sectionId).collapse('show');
+            
+            // Update active button
+            $('.category-btn').removeClass('active');
+            $(event.target).closest('.category-btn').addClass('active');
+        }
+
+        function validateOrderCancel(link) {
+            const orderId = link.getAttribute('href').match(/id=(\d+)/)[1];
+            if (!orderId) {
+                alert('Invalid order ID');
+                return false;
+            }
+            return confirm('Are you sure you want to cancel this order?');
+        }
+    </script>
+</body>
+</html>
