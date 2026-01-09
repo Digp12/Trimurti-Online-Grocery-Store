@@ -171,7 +171,7 @@ razorpay.key.secret=your_razorpay_secret
 4️⃣ Build and Run
 mvn clean install
 mvn spring-boot:run
-
+```
 5️⃣ Access Application
 | Portal | URL |
 |---|---|
@@ -266,137 +266,7 @@ mvn spring-boot:run
 <p align="center">
 <img src="docs/screenshots/refunds.png" alt="Refund Management" width="800"/>
 </p>
-📁 Project Structure
-TrimurtiKiranaStores/
-│
-├── 📄 pom.xml                          # Maven Dependencies
-├── 📄 mvnw                             # Maven Wrapper
-├── 📄 mvnw.cmd                         # Maven Wrapper (Windows)
-│
-├── 📂 src/
-│   ├── 📂 main/
-│   │   ├── 📂 java/com/example/
-│   │   │   │
-│   │   │   ├── 📄 TrimurtiKiranaStoresApplication.java
-│   │   │   │
-│   │   │   ├── 📂 config/
-│   │   │   │   ├── 📄 SecurityConfig.java
-│   │   │   │   ├── 📄 AuthSucessHandlerImpl.java
-│   │   │   │   ├── 📄 AuthFailureHandlerImpl.java
-│   │   │   │   ├── 📄 CustomUser.java
-│   │   │   │   ├── 📄 UserDetailsServiceImpl.java
-│   │   │   │   └── 📄 RazorpayConfig.java
-│   │   │   │
-│   │   │   ├── 📂 controller/
-│   │   │   │   ├── 📄 HomeController.java
-│   │   │   │   ├── 📄 UserController.java
-│   │   │   │   ├── 📄 AdminController.java
-│   │   │   │   └── 📄 PaymentController.java
-│   │   │   │
-│   │   │   ├── 📂 model/
-│   │   │   │   ├── 📄 UserDtls.java
-│   │   │   │   ├── 📄 Product.java
-│   │   │   │   ├── 📄 Category.java
-│   │   │   │   ├── 📄 Cart.java
-│   │   │   │   ├── 📄 Orders.java
-│   │   │   │   ├── 📄 ProductOrder.java
-│   │   │   │   ├── 📄 OrderAddress.java
-│   │   │   │   └── 📄 RefundRequest.java
-│   │   │   │
-│   │   │   ├── 📂 dto/
-│   │   │   │   ├── 📄 SalesReportDTO.java
-│   │   │   │   ├── 📄 DailySalesDTO.java
-│   │   │   │   ├── 📄 ProductSalesDTO.java
-│   │   │   │   └── 📄 RefundRequestDTO.java
-│   │   │   │
-│   │   │   ├── 📂 repository/
-│   │   │   │   ├── 📄 UserRepository.java
-│   │   │   │   ├── 📄 ProductRepository.java
-│   │   │   │   ├── 📄 CategoryRepository.java
-│   │   │   │   ├── 📄 CartRepository.java
-│   │   │   │   ├── 📄 OrdersRepository.java
-│   │   │   │   ├── 📄 ProductOrderRepository.java
-│   │   │   │   └── 📄 RefundRequestRepository.java
-│   │   │   │
-│   │   │   ├── 📂 service/
-│   │   │   │   ├── 📄 UserService.java
-│   │   │   │   ├── 📄 ProductService.java
-│   │   │   │   ├── 📄 CategoryService.java
-│   │   │   │   ├── 📄 CartService.java
-│   │   │   │   ├── 📄 OrderService.java
-│   │   │   │   ├── 📄 RefundService.java
-│   │   │   │   ├── 📄 RazorpayService.java
-│   │   │   │   ├── 📄 CommonService.java
-│   │   │   │   └── 📂 impl/
-│   │   │   │       ├── 📄 UserServiceImpl.java
-│   │   │   │       ├── 📄 ProductServiceImpl.java
-│   │   │   │       ├── 📄 CategoryServiceImpl.java
-│   │   │   │       ├── 📄 CartServiceImpl.java
-│   │   │   │       ├── 📄 OrderServiceImpl.java
-│   │   │   │       └── 📄 RefundServiceImpl.java
-│   │   │   │
-│   │   │   └── 📂 util/
-│   │   │       ├── 📄 AppConstant.java
-│   │   │       ├── 📄 CommonUtil.java
-│   │   │       └── 📄 OrderStatus.java
-│   │   │
-│   │   └── 📂 resources/
-│   │       ├── 📄 application.properties
-│   │       │
-│   │       ├── 📂 static/
-│   │       │   ├── 📂 css/
-│   │       │   │   ├── 📄 style.css
-│   │       │   │   ├── 📄 base_css.css
-│   │       │   │   └── 📄 header_css.css
-│   │       │   │
-│   │       │   ├── 📂 js/
-│   │       │   │   ├── 📄 script.js
-│   │       │   │   ├── 📄 checkout.js
-│   │       │   │   ├── 📄 salereport.js
-│   │       │   │   └── 📄 admin-validation.js
-│   │       │   │
-│   │       │   └── 📂 img/
-│   │       │       ├── 📂 category_img/
-│   │       │       ├── 📂 product_img/
-│   │       │       └── 📂 profile_img/
-│   │       │
-│   │       └── 📂 templates/
-│   │           ├── 📄 index.html
-│   │           ├── 📄 login.html
-│   │           ├── 📄 register.html
-│   │           ├── 📄 product.html
-│   │           ├── 📄 view_product.html
-│   │           ├── 📄 base.html
-│   │           ├── 📄 header.html
-│   │           │
-│   │           ├── 📂 admin/
-│   │           │   ├── 📄 index.html
-│   │           │   ├── 📄 products.html
-│   │           │   ├── 📄 add_product.html
-│   │           │   ├── 📄 edit_product.html
-│   │           │   ├── 📄 category.html
-│   │           │   ├── 📄 add_category.html
-│   │           │   ├── 📄 edit_category.html
-│   │           │   ├── 📄 orders.html
-│   │           │   ├── 📄 users.html
-│   │           │   ├── 📄 add_admin.html
-│   │           │   ├── 📄 sales_report.html
-│   │           │   ├── 📄 refunds.html
-│   │           │   └── 📄 profile.html
-│   │           │
-│   │           └── 📂 user/
-│   │               ├── 📄 cart.html
-│   │               ├── 📄 order.html
-│   │               ├── 📄 my_orders.html
-│   │               ├── 📄 success.html
-│   │               └── 📄 profile.html
-│   │
-│   └── 📂 test/
-│       └── 📂 java/com/example/demo/
-│           └── 📄 TrimurtiKiranaStoresApplicationTests.java
-│
-└── 📂 docs/
-    └── 📂 screenshots/
+
 
 🔗 API Endpoints
 🌐 Public Routes
