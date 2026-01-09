@@ -242,11 +242,9 @@ git push origin feature/AmazingFeature
   <a href="https://www.linkedin.com/in/digvijay-patil/" target="_blank">
     <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" />
   </a>
-
   <a href="https://github.com/Digp12" target="_blank">
     <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" />
   </a>
-
   <a href="mailto:digvijaypatil2002@gmail.com">
     <img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" />
   </a>
@@ -256,16 +254,10 @@ This project is developed for educational and learning purposes.
 Feel free to use it as a reference for your own projects.
 
 <div align="center">
-
 ⭐ <b>Star this repository</b> if you found it helpful!
-
 <br/><br/>
-
 <img src="https://img.shields.io/badge/Made%20with-%E2%9D%A4-red?style=for-the-badge" alt="Made with Love" />
 <img src="https://img.shields.io/badge/Built%20with-Spring%20Boot-6DB33F?style=for-the-badge&logo=spring-boot" alt="Built with Spring Boot" />
-
 <br/><br/>
-
 <b>Happy Coding! 🚀</b>
-
 </div>
