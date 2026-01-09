@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="307pt" height="146pt" viewBox="0.00 0.00 307.00 146.00">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 142.4)">
+<title>Admin_Workflow</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-142.4 303.09,-142.4 303.09,4 -4,4"/>
+<text xml:space="preserve" text-anchor="middle" x="149.54" y="-121.8" font-family="Times,serif" font-size="14.00">Admin Workflow – Trimurti Kirana Stores</text>
+<!-- Dashboard -->
+<g id="node1" class="node">
+<title>Dashboard</title>
+<polygon fill="lightcoral" stroke="black" points="229.22,-113.6 81.71,-113.6 81.71,-77.6 229.22,-77.6 229.22,-113.6"/>
+<text xml:space="preserve" text-anchor="middle" x="155.47" y="-91.4" font-family="Helvetica,sans-Serif" font-size="14.00">📊 Admin Dashboard</text>
+</g>
+<!-- Products -->
+<g id="node2" class="node">
+<title>Products</title>
+<polygon fill="lightcoral" stroke="black" points="96.93,-41.6 0,-41.6 0,0 96.93,0 96.93,-41.6"/>
+<text xml:space="preserve" text-anchor="middle" x="48.47" y="-25" font-family="Helvetica,sans-Serif" font-size="14.00">📦 Products</text>
+<text xml:space="preserve" text-anchor="middle" x="48.47" y="-8.2" font-family="Helvetica,sans-Serif" font-size="14.00">&amp; Categories</text>
+</g>
+<!-- Dashboard&#45;&gt;Products -->
+<g id="edge1" class="edge">
+<title>Dashboard-&gt;Products</title>
+<path fill="none" stroke="black" d="M129.84,-77.16C117.18,-68.55 101.63,-57.97 87.53,-48.38"/>
+<polygon fill="black" stroke="black" points="89.54,-45.51 79.3,-42.78 85.6,-51.3 89.54,-45.51"/>
+</g>
+<!-- Orders -->
+<g id="node3" class="node">
+<title>Orders</title>
+<polygon fill="lightcoral" stroke="black" points="196.15,-41.6 114.78,-41.6 114.78,0 196.15,0 196.15,-41.6"/>
+<text xml:space="preserve" text-anchor="middle" x="155.47" y="-25" font-family="Helvetica,sans-Serif" font-size="14.00">📋 Orders</text>
+<text xml:space="preserve" text-anchor="middle" x="155.47" y="-8.2" font-family="Helvetica,sans-Serif" font-size="14.00">&amp; Refunds</text>
+</g>
+<!-- Dashboard&#45;&gt;Orders -->
+<g id="edge2" class="edge">
+<title>Dashboard-&gt;Orders</title>
+<path fill="none" stroke="black" d="M155.47,-77.35C155.47,-70.15 155.47,-61.55 155.47,-53.29"/>
+<polygon fill="black" stroke="black" points="158.97,-53.54 155.47,-43.54 151.97,-53.54 158.97,-53.54"/>
+</g>
+<!-- Reports -->
+<g id="node4" class="node">
+<title>Reports</title>
+<polygon fill="lightcoral" stroke="black" points="299.09,-41.6 213.84,-41.6 213.84,0 299.09,0 299.09,-41.6"/>
+<text xml:space="preserve" text-anchor="middle" x="256.47" y="-25" font-family="Helvetica,sans-Serif" font-size="14.00">📈 Reports</text>
+<text xml:space="preserve" text-anchor="middle" x="256.47" y="-8.2" font-family="Helvetica,sans-Serif" font-size="14.00">&amp; Analytics</text>
+</g>
+<!-- Dashboard&#45;&gt;Reports -->
+<g id="edge3" class="edge">
+<title>Dashboard-&gt;Reports</title>
+<path fill="none" stroke="black" d="M179.66,-77.16C191.49,-68.63 206,-58.18 219.21,-48.65"/>
+<polygon fill="black" stroke="black" points="221.25,-51.5 227.31,-42.81 217.15,-45.82 221.25,-51.5"/>
+</g>
+</g>
+</svg>

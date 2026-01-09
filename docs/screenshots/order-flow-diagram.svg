@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="909pt" height="69pt" viewBox="0.00 0.00 909.00 69.00">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 64.8)">
+<title>User_Order_Flow</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-64.8 904.8,-64.8 904.8,4 -4,4"/>
+<text xml:space="preserve" text-anchor="middle" x="450.4" y="-44.2" font-family="Times,serif" font-size="14.00">User Order Flow – Customer Journey</text>
+<!-- Home -->
+<g id="node1" class="node">
+<title>Home</title>
+<polygon fill="lightyellow" stroke="black" points="109.38,-36 0,-36 0,0 109.38,0 109.38,-36"/>
+<text xml:space="preserve" text-anchor="middle" x="54.69" y="-13.8" font-family="Helvetica,sans-Serif" font-size="14.00">🏠 Home Page</text>
+</g>
+<!-- Browse -->
+<g id="node2" class="node">
+<title>Browse</title>
+<polygon fill="lightyellow" stroke="black" points="286.65,-36 145.38,-36 145.38,0 286.65,0 286.65,-36"/>
+<text xml:space="preserve" text-anchor="middle" x="216.01" y="-13.8" font-family="Helvetica,sans-Serif" font-size="14.00">🔍 Browse Products</text>
+</g>
+<!-- Home&#45;&gt;Browse -->
+<g id="edge1" class="edge">
+<title>Home-&gt;Browse</title>
+<path fill="none" stroke="black" d="M109.63,-18C117.36,-18 125.45,-18 133.57,-18"/>
+<polygon fill="black" stroke="black" points="133.52,-21.5 143.52,-18 133.52,-14.5 133.52,-21.5"/>
+</g>
+<!-- Cart -->
+<g id="node3" class="node">
+<title>Cart</title>
+<polygon fill="lightyellow" stroke="black" points="428.91,-36 322.65,-36 322.65,0 428.91,0 428.91,-36"/>
+<text xml:space="preserve" text-anchor="middle" x="375.78" y="-13.8" font-family="Helvetica,sans-Serif" font-size="14.00">🛒 Add to Cart</text>
+</g>
+<!-- Browse&#45;&gt;Cart -->
+<g id="edge2" class="edge">
+<title>Browse-&gt;Cart</title>
+<path fill="none" stroke="black" d="M287.13,-18C295.09,-18 303.17,-18 311.05,-18"/>
+<polygon fill="black" stroke="black" points="310.88,-21.5 320.88,-18 310.88,-14.5 310.88,-21.5"/>
+</g>
+<!-- Checkout -->
+<g id="node4" class="node">
+<title>Checkout</title>
+<polygon fill="lightyellow" stroke="black" points="600.74,-36 464.91,-36 464.91,0 600.74,0 600.74,-36"/>
+<text xml:space="preserve" text-anchor="middle" x="532.83" y="-13.8" font-family="Helvetica,sans-Serif" font-size="14.00">💳 Checkout &amp; Pay</text>
+</g>
+<!-- Cart&#45;&gt;Checkout -->
+<g id="edge3" class="edge">
+<title>Cart-&gt;Checkout</title>
+<path fill="none" stroke="black" d="M429.27,-18C436.97,-18 445.05,-18 453.13,-18"/>
+<polygon fill="black" stroke="black" points="453.03,-21.5 463.03,-18 453.03,-14.5 453.03,-21.5"/>
+</g>
+<!-- OrderPlaced -->
+<g id="node5" class="node">
+<title>OrderPlaced</title>
+<polygon fill="lightyellow" stroke="black" points="754.67,-36 636.74,-36 636.74,0 754.67,0 754.67,-36"/>
+<text xml:space="preserve" text-anchor="middle" x="695.71" y="-13.8" font-family="Helvetica,sans-Serif" font-size="14.00">📦 Order Placed</text>
+</g>
+<!-- Checkout&#45;&gt;OrderPlaced -->
+<g id="edge4" class="edge">
+<title>Checkout-&gt;OrderPlaced</title>
+<path fill="none" stroke="black" d="M601.12,-18C608.99,-18 617.03,-18 624.93,-18"/>
+<polygon fill="black" stroke="black" points="624.86,-21.5 634.86,-18 624.86,-14.5 624.86,-21.5"/>
+</g>
+<!-- Track -->
+<g id="node6" class="node">
+<title>Track</title>
+<polygon fill="lightyellow" stroke="black" points="900.8,-36 790.67,-36 790.67,0 900.8,0 900.8,-36"/>
+<text xml:space="preserve" text-anchor="middle" x="845.74" y="-13.8" font-family="Helvetica,sans-Serif" font-size="14.00">👤 Track Order</text>
+</g>
+<!-- OrderPlaced&#45;&gt;Track -->
+<g id="edge5" class="edge">
+<title>OrderPlaced-&gt;Track</title>
+<path fill="none" stroke="black" d="M754.79,-18C762.72,-18 770.9,-18 778.95,-18"/>
+<polygon fill="black" stroke="black" points="778.69,-21.5 788.69,-18 778.69,-14.5 778.69,-21.5"/>
+</g>
+</g>
+</svg>
