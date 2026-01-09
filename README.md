@@ -281,57 +281,72 @@ text
 └─────────────────────────────────────────────────────────────────────────────┘
 🗄️ Database ER Diagram
 <p align="center"> <img src="docs/screenshots/er-diagram.png" alt="ER Diagram" width="800"/> </p>
-🔗 API Endpoints
-🌐 Public Routes
-Method	Endpoint	Description
-GET	/	🏠 Home Page
-GET	/login	🔐 Login Page
-GET	/register	📝 Registration Page
-GET	/products	📦 Product Listing
-GET	/product/{id}	🔍 Product Details
-POST	/saveUser	💾 Register New User
-👤 User Routes (Authentication Required)
-Method	Endpoint	Description
-GET	/user/	🏠 User Dashboard
-GET	/user/cart	🛒 View Cart
-POST	/user/addCart	➕ Add to Cart
-GET	/user/cartQuantityUpdate	🔄 Update Quantity
-GET	/user/orders	📋 My Orders
-POST	/user/saveOrder	💳 Place Order
-GET	/user/profile	👤 User Profile
-🔧 Admin Routes (Admin Role Required)
-Method	Endpoint	Description
-GET	/admin/	📊 Admin Dashboard
-GET	/admin/products	📦 Product List
-POST	/admin/saveProduct	➕ Add Product
-GET	/admin/editProduct/{id}	✏️ Edit Product
-GET	/admin/deleteProduct/{id}	🗑️ Delete Product
-GET	/admin/category	🗂️ Categories
-POST	/admin/saveCategory	➕ Add Category
-GET	/admin/orders	📋 All Orders
-POST	/admin/updateOrderStatus	🔄 Update Status
-GET	/admin/users	👥 User List
-GET	/admin/sales-report	📈 Sales Report
-GET	/admin/refunds	💰 Refund Requests
+## 🔗 API Endpoints
+
+### 🌐 Public Routes
+
+| Method | Endpoint | Description |
+|:------:|:---------|:------------|
+| `GET` | `/` | 🏠 Home Page |
+| `GET` | `/login` | 🔐 Login Page |
+| `GET` | `/register` | 📝 Registration Page |
+| `GET` | `/products` | 📦 Product Listing |
+| `GET` | `/product/{id}` | 🔍 Product Details |
+| `POST` | `/saveUser` | 💾 Register New User |
+
+---
+
+### 👤 User Routes (Authentication Required)
+
+| Method | Endpoint | Description |
+|:------:|:---------|:------------|
+| `GET` | `/user/` | 🏠 User Dashboard |
+| `GET` | `/user/cart` | 🛒 View Cart |
+| `POST` | `/user/addCart` | ➕ Add to Cart |
+| `GET` | `/user/cartQuantityUpdate` | 🔄 Update Quantity |
+| `GET` | `/user/orders` | 📋 My Orders |
+| `POST` | `/user/saveOrder` | 💳 Place Order |
+| `GET` | `/user/profile` | 👤 User Profile |
+
+---
+
+### 🔧 Admin Routes (Admin Role Required)
+
+| Method | Endpoint | Description |
+|:------:|:---------|:------------|
+| `GET` | `/admin/` | 📊 Admin Dashboard |
+| `GET` | `/admin/products` | 📦 Product List |
+| `POST` | `/admin/saveProduct` | ➕ Add Product |
+| `GET` | `/admin/editProduct/{id}` | ✏️ Edit Product |
+| `GET` | `/admin/deleteProduct/{id}` | 🗑️ Delete Product |
+| `GET` | `/admin/category` | 🗂️ Categories |
+| `POST` | `/admin/saveCategory` | ➕ Add Category |
+| `GET` | `/admin/orders` | 📋 All Orders |
+| `POST` | `/admin/updateOrderStatus` | 🔄 Update Status |
+| `GET` | `/admin/users` | 👥 User List |
+| `GET` | `/admin/sales-report` | 📈 Sales Report |
+| `GET` | `/admin/refunds` | 💰 Refund Requests |
+
+---
 🤝 Contributing
 Contributions are what make the open source community amazing! Any contributions you make are greatly appreciated.
 
 🍴 Fork the Project
 🌿 Create your Feature Branch
-Bash
-
+```
 git checkout -b feature/AmazingFeature
+```
 💾 Commit your Changes
-Bash
-
+```
 git commit -m 'Add some AmazingFeature'
+```
 📤 Push to the Branch
-Bash
-
+```
 git push origin feature/AmazingFeature
+```
 🔃 Open a Pull Request
 📧 Contact
-<p align="center"> <a href="https://linkedin.com/in/yourprofile"> <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" /> </a> <a href="https://github.com/yourusername"> <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" /> </a> <a href="mailto:your.email@example.com"> <img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" /> </a> </p>
+<p align="center"> <a href="www.linkedin.com/in/digvijay--patil-"> <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" /> </a> <a href="https://github.com/Digp12"> <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" /> </a> <a href="mailto:your.digvijaypatil2002@gmail.com"> <img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" /> </a> </p>
 📄 License
 This project is developed for educational and learning purposes.
 Feel free to use it as a reference for your own projects.
