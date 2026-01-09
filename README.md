@@ -212,14 +212,12 @@ Process and manage customer refund requests.
 <p align="center"> <img src="docs/screenshots/refunds.png" alt="Refund Management" width="800"/> </p>
 🔄 Flow Diagram
 <p align="center"> <img src="docs/screenshots/flow-diagram.svg" alt="Data Flow Diagram" width="800"/> </p>
----
-### 🔄 User Order Flow
-<p align="center"> <img src="docs/screenshots/order-flow-diagram.svg" alt="User order Flow Diagram" width="800"/> </p>
----
 
-### 🔧 Admin Workflow
+🔄 User Order Flow
+<p align="center"> <img src="docs/screenshots/order-flow-diagram.svg" alt="User order Flow Diagram" width="800"/> </p>
+
+🔧 Admin Workflow
 <p align="center"> <img src="docs/screenshots/admin-flow-diagram.svg" alt="Admin Flow Diagram" width="800"/> </p>
----
 🤝 Contributing
 Contributions are what make the open source community amazing! Any contributions you make are greatly appreciated.
 
