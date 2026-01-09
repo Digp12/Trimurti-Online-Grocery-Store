@@ -190,11 +190,127 @@ mvn spring-boot:run
 Portal	URL
 🏠 User Portal	http://localhost:8080/
 🔧 Admin Panel	http://localhost:8080/admin/
-📸 Screenshots
-🏠 Home Page
-Main landing page featuring product categories, featured products, and search functionality.
+---
 
-Home Page
+## 📸 Screenshots
+
+### 🏠 Home Page
+> Main landing page featuring product categories, featured products, and search functionality.
+
+<p align="center">
+  <img src="docs/screenshots/home.png" alt="Home Page" width="800"/>
+</p>
+
+---
+
+### 🔐 Authentication
+
+<table>
+  <tr>
+    <td align="center"><b>🔑 Login Page</b></td>
+    <td align="center"><b>📝 Register Page</b></td>
+  </tr>
+  <tr>
+    <td><img src="docs/screenshots/login.png" alt="Login Page" width="400"/></td>
+    <td><img src="docs/screenshots/register.png" alt="Register Page" width="400"/></td>
+  </tr>
+</table>
+
+---
+
+### 🛍️ Products
+
+<table>
+  <tr>
+    <td align="center"><b>📋 Product Listing</b></td>
+    <td align="center"><b>🔍 Product Details</b></td>
+  </tr>
+  <tr>
+    <td><img src="docs/screenshots/products.png" alt="Product Listing" width="400"/></td>
+    <td><img src="docs/screenshots/product-details.png" alt="Product Details" width="400"/></td>
+  </tr>
+</table>
+
+---
+
+### 🛒 Cart & Checkout
+
+<table>
+  <tr>
+    <td align="center"><b>🛒 Shopping Cart</b></td>
+    <td align="center"><b>💳 Checkout Page</b></td>
+  </tr>
+  <tr>
+    <td><img src="docs/screenshots/cart.png" alt="Cart" width="400"/></td>
+    <td><img src="docs/screenshots/checkout.png" alt="Checkout" width="400"/></td>
+  </tr>
+</table>
+
+---
+
+### 📦 My Orders
+> Order tracking with status updates and order history.
+
+<p align="center">
+  <img src="docs/screenshots/my-orders.png" alt="My Orders" width="800"/>
+</p>
+
+---
+
+### 🔧 Admin Panel
+
+<table>
+  <tr>
+    <td align="center"><b>📊 Admin Dashboard</b></td>
+    <td align="center"><b>📦 Product Management</b></td>
+  </tr>
+  <tr>
+    <td><img src="docs/screenshots/admin-dashboard.png" alt="Admin Dashboard" width="400"/></td>
+    <td><img src="docs/screenshots/admin-products.png" alt="Product Management" width="400"/></td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <td align="center"><b>🗂️ Category Management</b></td>
+    <td align="center"><b>📋 Order Management</b></td>
+  </tr>
+  <tr>
+    <td><img src="docs/screenshots/admin-category.png" alt="Category Management" width="400"/></td>
+    <td><img src="docs/screenshots/admin-orders.png" alt="Order Management" width="400"/></td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <td align="center"><b>👥 User Management</b></td>
+    <td align="center"><b>➕ Add Product</b></td>
+  </tr>
+  <tr>
+    <td><img src="docs/screenshots/admin-users.png" alt="User Management" width="400"/></td>
+    <td><img src="docs/screenshots/admin-add-product.png" alt="Add Product" width="400"/></td>
+  </tr>
+</table>
+
+---
+
+### 📊 Sales Reports
+> Generate daily, monthly, quarterly, and yearly sales reports with analytics.
+
+<p align="center">
+  <img src="docs/screenshots/sales-report.png" alt="Sales Report" width="800"/>
+</p>
+
+---
+
+### 💰 Refund Management
+> Process and manage customer refund requests.
+
+<p align="center">
+  <img src="docs/screenshots/refunds.png" alt="Refund Management" width="800"/>
+</p>
+
+---
 
 🔐 Authentication
 <table> <tr> <td align="center"><b>🔑 Login Page</b></td> <td align="center"><b>📝 Register Page</b></td> </tr> <tr> <td><img src="docs/screenshots/login.png" alt="Login Page" width="400"/></td> <td><img src="docs/screenshots/register.png" alt="Register Page" width="400"/></td> </tr> </table>
