@@ -1,6 +1,7 @@
 <div align="center">
   
 # 🛒 Trimurti Kirana Stores
+
 ### Online Grocery Shopping Platform
 
 <p align="center">
@@ -18,13 +19,6 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/github/stars/yourusername/TrimurtiKiranaStores?style=social" alt="Stars" />
-  <img src="https://img.shields.io/github/forks/yourusername/TrimurtiKiranaStores?style=social" alt="Forks" />
-  <img src="https://img.shields.io/github/issues/yourusername/TrimurtiKiranaStores" alt="Issues" />
-  <img src="https://img.shields.io/github/license/yourusername/TrimurtiKiranaStores" alt="License" />
-</p>
-
-<p align="center">
   <b>A full-stack e-commerce web application for online grocery shopping with complete user & admin panels, order management, Razorpay payment integration, and sales analytics.</b>
 </p>
 
@@ -33,7 +27,7 @@
   <a href="#-tech-stack">Tech Stack</a> •
   <a href="#-installation">Installation</a> •
   <a href="#-screenshots">Screenshots</a> •
-  <a href="#-project-structure">Structure</a>
+  <a href="#-architecture">Architecture</a>
 </p>
 
 </div>
@@ -60,27 +54,29 @@
 ## 🚀 Features
 
 ### 👤 User Panel
-* ✅ User Registration & Login
-* ✅ Forgot / Reset Password
-* ✅ Browse Products by Category
-* ✅ Product Search & Filters
-* ✅ Product Details View
-* ✅ Add to Cart & Cart Management
-* ✅ Checkout & Order Placement
-* ✅ Online Payment (Razorpay) / Cash on Delivery
-* ✅ View & Track Orders
-* ✅ Cancel Orders
-* ✅ Profile Management
+
+- ✅ User Registration & Login
+- ✅ Forgot / Reset Password
+- ✅ Browse Products by Category
+- ✅ Product Search & Filters
+- ✅ Product Details View
+- ✅ Add to Cart & Cart Management
+- ✅ Checkout & Order Placement
+- ✅ Online Payment (Razorpay) / Cash on Delivery
+- ✅ View & Track Orders
+- ✅ Cancel Orders
+- ✅ Profile Management
 
 ### 🔧 Admin Panel
-* ✅ Admin Dashboard with Analytics
-* ✅ Product Management (Add / Edit / Delete)
-* ✅ Category Management
-* ✅ User Management (Activate / Deactivate)
-* ✅ Order Management & Status Updates
-* ✅ Refund Request Management
-* ✅ Sales Reports (Daily / Monthly / Quarterly / Yearly)
-* ✅ Top Selling Products Report
+
+- ✅ Admin Dashboard with Analytics
+- ✅ Product Management (Add / Edit / Delete)
+- ✅ Category Management
+- ✅ User Management (Activate / Deactivate)
+- ✅ Order Management & Status Updates
+- ✅ Refund Request Management
+- ✅ Sales Reports (Daily / Monthly / Quarterly / Yearly)
+- ✅ Top Selling Products Report
 
 ---
 
@@ -149,161 +145,108 @@
 ### 🔧 Setup Steps
 
 **1️⃣ Clone the Repository**
+
 ```bash
-git clone [https://github.com/yourusername/TrimurtiKiranaStores.git](https://github.com/yourusername/TrimurtiKiranaStores.git)
+git clone https://github.com/yourusername/TrimurtiKiranaStores.git
 cd TrimurtiKiranaStores
-
+```
 2️⃣ Create MySQL Database
-CREATE DATABASE trimurti_kirana;
 
+SQL
+```
+CREATE DATABASE trimurti_kirana;
+```
 3️⃣ Configure Application Properties
+```
 Edit src/main/resources/application.properties:
+```
+properties
+
 # Database Configuration
+```
 spring.datasource.url=jdbc:mysql://localhost:3306/trimurti_kirana
 spring.datasource.username=your_username
 spring.datasource.password=your_password
 spring.jpa.hibernate.ddl-auto=update
-
+```
 # Razorpay Configuration (Optional)
+```
 razorpay.key.id=your_razorpay_key_id
 razorpay.key.secret=your_razorpay_secret
-
+```
 4️⃣ Build and Run
+
+```
 mvn clean install
 mvn spring-boot:run
 ```
 5️⃣ Access Application
-| Portal | URL |
-|---|---|
-| 🏠 User Portal | http://localhost:8080/ |
-| 🔧 Admin Panel | http://localhost:8080/admin/ |
+
+Portal	URL
+🏠 User Portal	http://localhost:8080/
+🔧 Admin Panel	http://localhost:8080/admin/
 📸 Screenshots
 🏠 Home Page
-> Main landing page featuring product categories, featured products, and search functionality.
-> 
-<p align="center">
-<img src="docs/screenshots/home.png" alt="Home Page" width="800"/>
-</p>
+Main landing page featuring product categories, featured products, and search functionality.
+
+<p align="center"> <img src="docs/screenshots/home.png" alt="Home Page" width="800"/> </p>
 🔐 Authentication
-<table>
-<tr>
-<td align="center"><b>🔑 Login Page</b></td>
-<td align="center"><b>📝 Register Page</b></td>
-</tr>
-<tr>
-<td><img src="docs/screenshots/login.png" alt="Login Page" width="400"/></td>
-<td><img src="docs/screenshots/register.png" alt="Register Page" width="400"/></td>
-</tr>
-</table>
+<table> <tr> <td align="center"><b>🔑 Login Page</b></td> <td align="center"><b>📝 Register Page</b></td> </tr> <tr> <td><img src="docs/screenshots/login.png" alt="Login Page" width="400"/></td> <td><img src="docs/screenshots/register.png" alt="Register Page" width="400"/></td> </tr> </table>
 🛍️ Products
-<table>
-<tr>
-<td align="center"><b>📋 Product Listing</b></td>
-<td align="center"><b>🔍 Product Details</b></td>
-</tr>
-<tr>
-<td><img src="docs/screenshots/products.png" alt="Product Listing" width="400"/></td>
-<td><img src="docs/screenshots/product-details.png" alt="Product Details" width="400"/></td>
-</tr>
-</table>
+<table> <tr> <td align="center"><b>📋 Product Listing</b></td> <td align="center"><b>🔍 Product Details</b></td> </tr> <tr> <td><img src="docs/screenshots/products.png" alt="Product Listing" width="400"/></td> <td><img src="docs/screenshots/product-details.png" alt="Product Details" width="400"/></td> </tr> </table>
 🛒 Cart & Checkout
-<table>
-<tr>
-<td align="center"><b>🛒 Shopping Cart</b></td>
-<td align="center"><b>💳 Checkout Page</b></td>
-</tr>
-<tr>
-<td><img src="docs/screenshots/cart.png" alt="Cart" width="400"/></td>
-<td><img src="docs/screenshots/checkout.png" alt="Checkout" width="400"/></td>
-</tr>
-</table>
+<table> <tr> <td align="center"><b>🛒 Shopping Cart</b></td> <td align="center"><b>💳 Checkout Page</b></td> </tr> <tr> <td><img src="docs/screenshots/cart.png" alt="Cart" width="400"/></td> <td><img src="docs/screenshots/checkout.png" alt="Checkout" width="400"/></td> </tr> </table>
 📦 My Orders
-> Order tracking with status updates and order history.
-> 
-<p align="center">
-<img src="docs/screenshots/my-orders.png" alt="My Orders" width="800"/>
-</p>
+Order tracking with status updates and order history.
+
+<p align="center"> <img src="docs/screenshots/my-orders.png" alt="My Orders" width="800"/> </p>
 🔧 Admin Panel
-<table>
-<tr>
-<td align="center"><b>📊 Admin Dashboard</b></td>
-<td align="center"><b>📦 Product Management</b></td>
-</tr>
-<tr>
-<td><img src="docs/screenshots/admin-dashboard.png" alt="Admin Dashboard" width="400"/></td>
-<td><img src="docs/screenshots/admin-products.png" alt="Product Management" width="400"/></td>
-</tr>
-</table>
-<table>
-<tr>
-<td align="center"><b>🗂️ Category Management</b></td>
-<td align="center"><b>📋 Order Management</b></td>
-</tr>
-<tr>
-<td><img src="docs/screenshots/admin-category.png" alt="Category Management" width="400"/></td>
-<td><img src="docs/screenshots/admin-orders.png" alt="Order Management" width="400"/></td>
-</tr>
-</table>
-<table>
-<tr>
-<td align="center"><b>👥 User Management</b></td>
-<td align="center"><b>➕ Add Product</b></td>
-</tr>
-<tr>
-<td><img src="docs/screenshots/admin-users.png" alt="User Management" width="400"/></td>
-<td><img src="docs/screenshots/admin-add-product.png" alt="Add Product" width="400"/></td>
-</tr>
-</table>
+<table> <tr> <td align="center"><b>📊 Admin Dashboard</b></td> <td align="center"><b>📦 Product Management</b></td> </tr> <tr> <td><img src="docs/screenshots/admin-dashboard.png" alt="Admin Dashboard" width="400"/></td> <td><img src="docs/screenshots/admin-products.png" alt="Product Management" width="400"/></td> </tr> </table><table> <tr> <td align="center"><b>🗂️ Category Management</b></td> <td align="center"><b>📋 Order Management</b></td> </tr> <tr> <td><img src="docs/screenshots/admin-category.png" alt="Category Management" width="400"/></td> <td><img src="docs/screenshots/admin-orders.png" alt="Order Management" width="400"/></td> </tr> </table><table> <tr> <td align="center"><b>👥 User Management</b></td> <td align="center"><b>➕ Add Product</b></td> </tr> <tr> <td><img src="docs/screenshots/admin-users.png" alt="User Management" width="400"/></td> <td><img src="docs/screenshots/admin-add-product.png" alt="Add Product" width="400"/></td> </tr> </table>
 📊 Sales Reports
-> Generate daily, monthly, quarterly, and yearly sales reports with analytics.
-> 
-<p align="center">
-<img src="docs/screenshots/sales-report.png" alt="Sales Report" width="800"/>
-</p>
+Generate daily, monthly, quarterly, and yearly sales reports with analytics.
+
+<p align="center"> <img src="docs/screenshots/sales-report.png" alt="Sales Report" width="800"/> </p>
 💰 Refund Management
-> Process and manage customer refund requests.
-> 
-<p align="center">
-<img src="docs/screenshots/refunds.png" alt="Refund Management" width="800"/>
-</p>
+Process and manage customer refund requests.
 
+<p align="center"> <img src="docs/screenshots/refunds.png" alt="Refund Management" width="800"/> </p>
+🏗️ Architecture & Data Flow
+📐 System Architecture Diagram
+<p align="center"> <img src="docs/screenshots/architecture-diagram.png" alt="System Architecture" width="800"/> </p>
+🔄 Data Flow Diagram
+<p align="center"> <img src="docs/screenshots/data-flow-diagram.png" alt="Data Flow Diagram" width="800"/> </p>
+🧩 MVC Architecture Pattern
+text
 
-🔗 API Endpoints
-🌐 Public Routes
-| Method | Endpoint | Description |
-|---|---|---|
-| GET | / | 🏠 Home Page |
-| GET | /login | 🔐 Login Page |
-| GET | /register | 📝 Registration Page |
-| GET | /products | 📦 Product Listing |
-| GET | /product/{id} | 🔍 Product Details |
-| POST | /saveUser | 💾 Register New User |
-👤 User Routes (Authentication Required)
-| Method | Endpoint | Description |
-|---|---|---|
-| GET | /user/ | 🏠 User Dashboard |
-| GET | /user/cart | 🛒 View Cart |
-| POST | /user/addCart | ➕ Add to Cart |
-| GET | /user/cartQuantityUpdate | 🔄 Update Quantity |
-| GET | /user/orders | 📋 My Orders |
-| POST | /user/saveOrder | 💳 Place Order |
-| GET | /user/profile | 👤 User Profile |
-🔧 Admin Routes (Admin Role Required)
-| Method | Endpoint | Description |
-|---|---|---|
-| GET | /admin/ | 📊 Admin Dashboard |
-| GET | /admin/products | 📦 Product List |
-| POST | /admin/saveProduct | ➕ Add Product |
-| GET | /admin/editProduct/{id} | ✏️ Edit Product |
-| GET | /admin/deleteProduct/{id} | 🗑️ Delete Product |
-| GET | /admin/category | 🗂️ Categories |
-| POST | /admin/saveCategory | ➕ Add Category |
-| GET | /admin/orders | 📋 All Orders |
-| POST | /admin/updateOrderStatus | 🔄 Update Status |
-| GET | /admin/users | 👥 User List |
-| GET | /admin/sales-report | 📈 Sales Report |
-| GET | /admin/refunds | 💰 Refund Requests |
-🔄 User Flow
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                          MVC ARCHITECTURE                                    │
+├─────────────────────────────────────────────────────────────────────────────┤
+│                                                                             │
+│    ┌──────────────┐      ┌──────────────┐      ┌──────────────┐            │
+│    │              │      │              │      │              │            │
+│    │     VIEW     │ ◄──► │  CONTROLLER  │ ◄──► │    MODEL     │            │
+│    │  (Thymeleaf) │      │ (Spring MVC) │      │   (Entity)   │            │
+│    │              │      │              │      │              │            │
+│    └──────────────┘      └──────────────┘      └──────────────┘            │
+│          │                      │                     │                     │
+│          │                      │                     │                     │
+│          ▼                      ▼                     ▼                     │
+│    ┌──────────────┐      ┌──────────────┐      ┌──────────────┐            │
+│    │   HTML/CSS   │      │   SERVICE    │      │  REPOSITORY  │            │
+│    │  Bootstrap   │      │    LAYER     │      │    (JPA)     │            │
+│    │  JavaScript  │      │              │      │              │            │
+│    └──────────────┘      └──────────────┘      └──────────────┘            │
+│                                                       │                     │
+│                                                       ▼                     │
+│                                                ┌──────────────┐            │
+│                                                │    MySQL     │            │
+│                                                │   DATABASE   │            │
+│                                                └──────────────┘            │
+│                                                                             │
+└─────────────────────────────────────────────────────────────────────────────┘
+🔄 User Order Flow
+text
+
 ┌─────────────────────────────────────────────────────────────────────────────┐
 │                           CUSTOMER JOURNEY                                   │
 ├─────────────────────────────────────────────────────────────────────────────┤
@@ -312,10 +255,12 @@ mvn spring-boot:run
 │   Page            Products          Cart              & Pay                 │
 │                                                          │                  │
 │                                                          ▼                  │
-│   👤 Track   ◀────────────────────────────────────   📦 Order              │
+│   👤 Track   ◄────────────────────────────────────   📦 Order              │
 │   Order                                               Placed                │
 │                                                                             │
 └─────────────────────────────────────────────────────────────────────────────┘
+🔧 Admin Workflow
+text
 
 ┌─────────────────────────────────────────────────────────────────────────────┐
 │                            ADMIN WORKFLOW                                    │
@@ -334,40 +279,66 @@ mvn spring-boot:run
 │   └──────────────┘      └──────────────┘      └──────────────┘             │
 │                                                                             │
 └─────────────────────────────────────────────────────────────────────────────┘
-
+🗄️ Database ER Diagram
+<p align="center"> <img src="docs/screenshots/er-diagram.png" alt="ER Diagram" width="800"/> </p>
+🔗 API Endpoints
+🌐 Public Routes
+Method	Endpoint	Description
+GET	/	🏠 Home Page
+GET	/login	🔐 Login Page
+GET	/register	📝 Registration Page
+GET	/products	📦 Product Listing
+GET	/product/{id}	🔍 Product Details
+POST	/saveUser	💾 Register New User
+👤 User Routes (Authentication Required)
+Method	Endpoint	Description
+GET	/user/	🏠 User Dashboard
+GET	/user/cart	🛒 View Cart
+POST	/user/addCart	➕ Add to Cart
+GET	/user/cartQuantityUpdate	🔄 Update Quantity
+GET	/user/orders	📋 My Orders
+POST	/user/saveOrder	💳 Place Order
+GET	/user/profile	👤 User Profile
+🔧 Admin Routes (Admin Role Required)
+Method	Endpoint	Description
+GET	/admin/	📊 Admin Dashboard
+GET	/admin/products	📦 Product List
+POST	/admin/saveProduct	➕ Add Product
+GET	/admin/editProduct/{id}	✏️ Edit Product
+GET	/admin/deleteProduct/{id}	🗑️ Delete Product
+GET	/admin/category	🗂️ Categories
+POST	/admin/saveCategory	➕ Add Category
+GET	/admin/orders	📋 All Orders
+POST	/admin/updateOrderStatus	🔄 Update Status
+GET	/admin/users	👥 User List
+GET	/admin/sales-report	📈 Sales Report
+GET	/admin/refunds	💰 Refund Requests
 🤝 Contributing
 Contributions are what make the open source community amazing! Any contributions you make are greatly appreciated.
- * 🍴 Fork the Project
- * 🌿 Create your Feature Branch
-   git checkout -b feature/AmazingFeature
 
- * 💾 Commit your Changes
-   git commit -m 'Add some AmazingFeature'
+🍴 Fork the Project
+🌿 Create your Feature Branch
+Bash
 
- * 📤 Push to the Branch
-   git push origin feature/AmazingFeature
+git checkout -b feature/AmazingFeature
+💾 Commit your Changes
+Bash
 
- * 🔃 Open a Pull Request
+git commit -m 'Add some AmazingFeature'
+📤 Push to the Branch
+Bash
+
+git push origin feature/AmazingFeature
+🔃 Open a Pull Request
 📧 Contact
-<p align="center">
-<a href="https://linkedin.com/in/yourprofile">
-<img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" />
-</a>
-<a href="https://github.com/yourusername">
-<img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" />
-</a>
-<a href="mailto:your.email@example.com">
-<img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" />
-</a>
-</p>
+<p align="center"> <a href="https://linkedin.com/in/yourprofile"> <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" /> </a> <a href="https://github.com/yourusername"> <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" /> </a> <a href="mailto:your.email@example.com"> <img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" /> </a> </p>
 📄 License
 This project is developed for educational and learning purposes.
 Feel free to use it as a reference for your own projects.
+
 <div align="center">
 ⭐ Star this repository if you found it helpful!
-<img src="https://img.shields.io/badge/Made%20with-❤️-red?style=for-the-badge" alt="Made with Love" />
-<img src="https://img.shields.io/badge/Built%20with-Spring%20Boot-6DB33F?style=for-the-badge&logo=spring-boot" alt="Built with Spring Boot" />
+<img src="https://img.shields.io/badge/Made%20with-❤️-red?style=for-the-badge" alt="Made with Love" /> <img src="https://img.shields.io/badge/Built%20with-Spring%20Boot-6DB33F?style=for-the-badge&logo=spring-boot" alt="Built with Spring Boot" />
+Happy Coding! 🚀
 
-
-<b>Happy Coding! 🚀</b>
-</div>
+</div> ```
