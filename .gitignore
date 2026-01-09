@@ -1,8 +1,17 @@
-HELP.md
+# ===============================
+# Maven / Spring Boot
+# ===============================
 target/
-!.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
+
+HELP.md
+.mvn/
+!.mvn/wrapper/maven-wrapper.jar
+
+# ===============================
+# IDE Files
+# ===============================
 
 ### STS ###
 .apt_generated
@@ -31,3 +40,18 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# ===============================
+# Ignore TXT files (IMPORTANT)
+# ===============================
+*.txt
+
+# Explicit ignore (extra safety)
+src/main/resources/templates/user_details.txt
+src/main/resources/templates/admin/user_details.txt
+
+# ===============================
+# Allow ONLY image files
+# ===============================
+!*.jpg
+!*.jpeg
