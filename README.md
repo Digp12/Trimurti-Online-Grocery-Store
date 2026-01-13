@@ -147,14 +147,14 @@
 **1️⃣ Clone the Repository**
 
 ```bash
-git clone https://github.com/yourusername/TrimurtiKiranaStores.git
-cd TrimurtiKiranaStores
+git clone https://github.com/Digp12/Trimurti-Online-Grocery-Store
+cd Trimurti-Online-Grocery-Store
 ```
 2️⃣ Create MySQL Database
 
 SQL
 ```
-CREATE DATABASE trimurti_kirana;
+CREATE DATABASE trimurtikiranastores_db;
 ```
 3️⃣ Configure Application Properties
 ```
@@ -164,7 +164,7 @@ properties
 
 # Database Configuration
 ```
-spring.datasource.url=jdbc:mysql://localhost:3306/trimurti_kirana
+spring.datasource.url=jdbc:mysql://localhost:3306/trimurtikiranastores_db
 spring.datasource.username=your_username
 spring.datasource.password=your_password
 spring.jpa.hibernate.ddl-auto=update
@@ -182,9 +182,11 @@ mvn spring-boot:run
 ```
 5️⃣ Access Application
 
-Portal	URL
+Portal	URL<br/>
+
 🏠 User Portal	http://localhost:8080/
-🔧 Admin Panel	http://localhost:8080/admin/
+🔧 Admin Panel	http://localhost:8080/admin/<br/>
+
 📸 Screenshots
 🏠 Home Page
 Main landing page featuring product categories, featured products, and search functionality.
